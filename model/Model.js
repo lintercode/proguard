@@ -14,19 +14,19 @@ const userSchema = new Schema({
   state: { type: String, required: false },
   religion: { type: String, required: false },
   maritalStatus: { type: String, required: false },
-  username:{type:String, required:true},
-  password:{type:String,required:true}
-  access_level: [{type: mongoose.Schema.Types.ObjectId, ref: "Role", default:null}];
-  {timestamps:true}
+  username:{ type:String, required:true },
+  password:{ type:String,required:true }
+  access_level: [{ type: mongoose.Schema.Types.ObjectId, ref: "Role", default:null }];
+  { timestamps:true }
 });
 
 const roleSchema = new Schema({
-    title: {type:String, required: true},
-    privilage:[{type: mongoose.Schema.Types.ObjectId,ref:"Claim", default:null}]
+    title: { type:String, required: true },
+    privilage:[{ type: mongoose.Schema.Types.ObjectId, ref:"Claim", default:null }]
 })
 
 const claimSchema = new Schema({
-    title: {type: String, required:true}
+    title: { type: String, required:true }
 })
 
 module.exports = {
