@@ -1,4 +1,4 @@
-const Login = require('./Login')
+const Login = require('./login')
 
 module.exports = {
   Login
