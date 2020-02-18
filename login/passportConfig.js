@@ -20,7 +20,7 @@ passport.use(new LocalStrategy({
                 return done(null, false);
             }
             // When password is not correct
-            if (!user.authenticate(password)) {
+            if (!bcrypt.compareSync(password, user.password)) {
                 return done(null, false);
             }
 
