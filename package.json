@@ -39,6 +39,7 @@
     "eslint": "^6.8.0",
     "nodemon": "^2.0.2",
     "standardjs": "^1.0.0-alpha",
+    "supertest": "^4.0.2",
     "tap-bail": "1.0.0",
     "tap-difflet": "0.7.1",
     "tape": "4.10.2",
