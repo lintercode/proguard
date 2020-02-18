@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test-all",
+    "test-all": "NODE_ENV=testing tape -r @babel/register './test/{unit,integration}/**/*-test.js' | tap-bail | tap-difflet"
   },
   "repository": {
     "type": "git",
@@ -23,12 +24,24 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.1",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "7.1.2",
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/plugin-transform-async-to-generator": "7.1.0",
+    "@babel/plugin-transform-runtime": "7.1.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/register": "7.4.4",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "nodemon": "^2.0.2",
-    "standardjs": "^1.0.0-alpha"
+    "standardjs": "^1.0.0-alpha",
+    "tap-bail": "1.0.0",
+    "tap-difflet": "0.7.1",
+    "tape": "4.10.2",
+    "tape-promise": "4.0.0"
   }
 }
