@@ -15,8 +15,8 @@ const userSchema = new Schema({
   religion: { type: String, required: false },
   maritalStatus: { type: String, required: false },
   username:{ type:String, required:true },
-  password:{ type:String,required:true }
-  access_level: [{ type: mongoose.Schema.Types.ObjectId, ref: "Role", default:null }];
+  password:{ type:String,required:true },
+  access_level: [{ type: mongoose.Schema.Types.ObjectId, ref: "Role", default:null }],
   { timestamps:true }
 });
 
