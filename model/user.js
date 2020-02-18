@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require("./role")
 
 const Schema = mongoose.Schema;
 
@@ -17,20 +18,9 @@ const userSchema = new Schema({
   username:{ type:String, required:true },
   password:{ type:String,required:true },
   access_level: [{ type: mongoose.Schema.Types.ObjectId, ref: "Role", default:null }],
-  { timestamps:true }
+  timestamps:true 
 });
 
-const roleSchema = new Schema({
-    title: { type:String, required: true },
-    privilage:[{ type: mongoose.Schema.Types.ObjectId, ref:"Claim", default:null }]
-})
+const User = mongoose.model("User", userSchema)
 
-const claimSchema = new Schema({
-    title: { type: String, required:true }
-})
-
-module.exports = {
-    User: mongoose.model("User", userSchema),
-    Role: mongoose.model("Role", roleSchema),
-    Claim:mongoose.model("Claim", claimSchema)
-}
+module.exports = User;

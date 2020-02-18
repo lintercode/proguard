@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { User } = require('../model/Model')
+const { User } = require('../model')
 
 // Function for encrypting the password before saving
 const encryptPassword = async password => {
