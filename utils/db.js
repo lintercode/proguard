@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
+const { LocalConfig } = require('../config/config')
 
 function dbConnection () {
-  const DB_URL = process.env.DB_URL
+  const DB_URL = LocalConfig.DB_URL
   mongoose.connect(
     DB_URL,
     { useNewUrlParser: true, useUnifiedTopology: true },
