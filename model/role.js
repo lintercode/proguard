@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const Schema = mongoose.Schema
 
 function roleSchemas () {
@@ -12,3 +11,4 @@ function roleSchemas () {
 }
 
 module.exports = roleSchemas
+

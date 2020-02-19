@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const Schema = mongoose.Schema
 
 function claimSchemas () {
@@ -9,3 +8,4 @@ function claimSchemas () {
 }
 
 module.exports = claimSchemas
+

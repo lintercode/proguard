@@ -1,7 +1,7 @@
 {
     "editor.formatOnSave": false,
     "standard.autoFixOnSave": true,
-    "eslint.autoFixOnSave": false,
+    "eslint.autoFixOnSave": true,
     "javascript.validate.enable": false,
     "files.autoSave": "off",
     "standard.usePackageJson": false,
