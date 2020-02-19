@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyparser = require('body-parser')
-const database = require('./db/db')
+const database = require('./utils/db')
+const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
@@ -8,9 +9,9 @@ const port = process.env.PORT || 5000
 // executing the database
 database()
 
-// Middlewares for user requests
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({ extended: true }))
+// Middlewares for service request
+app.use(express.json())
+app.use(cors())
 
 // Routes
 

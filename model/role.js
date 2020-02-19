@@ -7,7 +7,9 @@ function roleSchemas () {
     privilage: [
       { type: mongoose.Schema.Types.ObjectId, ref: 'Claim', default: null }
     ]
-  })
+  },
+  {timestamps: { createdAt: 'created_at' }}
+  )
 }
 
 module.exports = roleSchemas

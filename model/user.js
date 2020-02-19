@@ -20,8 +20,9 @@ function userSchemas () {
     access_level: [
       { type: mongoose.Schema.Types.ObjectId, ref: 'Role', default: null }
     ]
-    // timestamps: { createdAt: 'created_at' }
-  })
+  },
+  {timestamps: { createdAt: 'created_at' }}
+  )
 }
 
 module.exports = userSchemas
