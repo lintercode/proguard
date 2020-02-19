@@ -11,6 +11,7 @@ database()
 
 // Middlewares for service request
 app.use(express.json())
+app.use(express.urlencoded({extended: true}));
 app.use(cors())
 
 // Routes
