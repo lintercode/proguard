@@ -15,13 +15,15 @@ function userSchemas () {
     state: { type: String, required: false },
     religion: { type: String, required: false },
     maritalStatus: { type: String, required: false },
+    email: { type: String, required: false },
     username: { type: String, required: true },
     password: { type: String, required: true },
     access_level: [
       { type: mongoose.Schema.Types.ObjectId, ref: 'Role', default: null }
     ]
-    // timestamps: { createdAt: 'created_at' }
-  })
+  },
+  {timestamps: { createdAt: 'created_at' }}
+  )
 }
 
 module.exports = userSchemas

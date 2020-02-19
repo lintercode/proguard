@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test-all",
+    "test-all": "NODE_ENV=testing tape -r @babel/register './test/{unit,integration}/**/*-test.js' | tap-bail | tap-difflet",
     "start": "nodemon index.js"
-
   },
   "repository": {
     "type": "git",
@@ -21,12 +21,13 @@
   "homepage": "https://github.com/ezesundayeze/proguard#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.1",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
@@ -40,7 +41,6 @@
     "eslint": "^6.8.0",
     "nodemon": "^2.0.2",
     "standardjs": "^1.0.0-alpha",
-    "supertest": "^4.0.2",
     "tap-bail": "1.0.0",
     "tap-difflet": "0.7.1",
     "tape": "4.10.2",
