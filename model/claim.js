@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const claimSchema = new Schema({
-  title: { type: String, required: true },
-},
-{ timestamps: { createdAt: 'created_at' } }
-)
+function claimSchemas () {
+  return Schema({
+    title: { type: String, required: true }
+  })
+}
 
-module.exports = claimSchema
+module.exports = claimSchemas
+

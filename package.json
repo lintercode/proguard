@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test-all",
-    "test-all": "NODE_ENV=testing tape -r @babel/register './test/{unit,integration}/**/*-test.js' | tap-bail | tap-difflet"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+
   },
   "repository": {
     "type": "git",
