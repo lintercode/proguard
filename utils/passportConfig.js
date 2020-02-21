@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const LocalStrategy = require('passport-local').Strategy
+const TwitterStrategy = require("passport-twitter").Strategy
 const { User } = require('../model')
 
 // Password Local Strategy
@@ -31,5 +32,37 @@ module.exports = (passport)=>{
             })
         }
     ))
+
+
+    passport.use(new TwitterStrategy({
+        consumerKey: process.env.TWITTER_CONSUMER_KEY,
+        consumerSecret: process.env.TWITTER.CONSUMER_SECRET,
+        callbackURL: process.env.TWITTER.CALL_BACK,
+        includeEmail:true
+      },
+      function(token, tokenSecret, profile, done) {
+    
+            const twitterUser = new User({
+                email : profile.emails[0].value,
+                username : profile.displayName
+            });
+    
+            /* save if new */
+            user.findOne({email:twitterUser.email}, (err, user) =>{
+                if(!user) {
+                    twitterUser.save(function(err, twitterUser) {
+                        if(err) {
+                            return done(err)
+                        }else{
+                            done(null,twitterUser);
+                        }
+                    })
+                } else {
+                    done(null, user);
+                }
+            });
+    
+      }
+    ));
 
 }

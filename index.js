@@ -30,4 +30,15 @@ app.use((err, req, res, next) => {
   res.status(status).json({ error: { message: error.message } })
 })
 
+
+passport.serializeUser(function(user, done) {
+	done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+	user.findById(id, function(err, user) {
+		done(err, user);
+	});
+});
+
 app.listen(port, () => console.log('server started'))

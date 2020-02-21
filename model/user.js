@@ -22,7 +22,9 @@ function userSchemas () {
       { type: mongoose.Schema.Types.ObjectId, ref: 'Role', default: null }
     ]
   },
-  {timestamps: { createdAt: 'created_at' }}
+  {timestamps: { 
+    createdAt: 'created_at' 
+  }}
   )
 }
 
