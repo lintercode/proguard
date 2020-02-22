@@ -47,7 +47,8 @@ module.exports = {
       {
         clientID: FacebookConfig.clientID,
         clientSecret: FacebookConfig.clientSecret,
-        callbackURL: FacebookConfig.callbackURL
+        callbackURL: FacebookConfig.callbackURL,
+        profileFields: ['id', 'displayName', 'contact', 'name', 'email']
       },
       function (accessToken, refreshToken, profile, done) {
         // User.findOrCreate(..., function(err, user) {

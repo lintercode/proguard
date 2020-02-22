@@ -17,7 +17,10 @@ app.use(cors())
 
 // Routes
 app.post('/create/user', localRegistration)
-app.get('/auth/facebook', passport.authenticate('facebook'))
+app.get(
+  '/auth/facebook',
+  passport.authenticate('facebook', { scope: ['email'] })
+)
 app.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
