@@ -36,19 +36,18 @@ module.exports = (passport)=>{
 
     passport.use(new TwitterStrategy({
         consumerKey: process.env.TWITTER_CONSUMER_KEY,
-        consumerSecret: process.env.TWITTER.CONSUMER_SECRET,
-        callbackURL: process.env.TWITTER.CALL_BACK,
+        consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+        callbackURL: process.env.TWITTER_CALL_BACK,
         includeEmail:true
       },
-      function(token, tokenSecret, profile, done) {
+      (token, tokenSecret, profile, done) => {
     
             const twitterUser = new User({
                 email : profile.emails[0].value,
                 username : profile.displayName
-            });
-    
-            /* save if new */
-            user.findOne({email:twitterUser.email}, (err, user) =>{
+            });    
+            // /* save if new */
+            User.findOne({email:twitterUser.email}, (err, user) =>{
                 if(!user) {
                     twitterUser.save(function(err, twitterUser) {
                         if(err) {
@@ -64,5 +63,17 @@ module.exports = (passport)=>{
     
       }
     ));
+
+    // In order to restore authentication state across HTTP requests, Passport needs
+    // to serialize users into and deserialize users out of the session. 
+    passport.serializeUser(function(user, done) {
+        done(null, user);
+    });
+
+    passport.deserializeUser(function(id, done) {
+        user.findById(id, function(err, user) {
+            done(err, user);
+        });
+    });
 
 }

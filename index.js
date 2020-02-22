@@ -1,13 +1,22 @@
 const express = require('express')
-const bodyparser = require('body-parser')
 const database = require('./utils/db')
 const cors = require('cors')
-require('dotenv').config()
-
-const app = express()
+const passport =  require('passport')
+const session = require('express-session')
 const port = process.env.PORT || 5000
+const app = express()
+require('dotenv').config()
+require('./utils/passportConfig')(passport)
+
 // executing the database
 database()
+
+app.use(passport.initialize());
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'uwotm8'
+}))
 
 // Middlewares for service request
 app.use(express.json())
@@ -15,6 +24,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors())
 
 // Routes
+require('./routes')(app)
 
 // middleware for handling file not found error
 app.use((req, res, next) => {
@@ -30,15 +40,4 @@ app.use((err, req, res, next) => {
   res.status(status).json({ error: { message: error.message } })
 })
 
-
-passport.serializeUser(function(user, done) {
-	done(null, user._id);
-});
-
-passport.deserializeUser(function(id, done) {
-	user.findById(id, function(err, user) {
-		done(err, user);
-	});
-});
-
-app.listen(port, () => console.log('server started'))
+app.listen(port, () => console.log('server started at '+ port))

@@ -4,6 +4,9 @@ const passport = require('passport')
 require('../utils/passportConfig')(passport)
 
 module.exports = {
+  twitterLogin: passport.authenticate('twitter'),
+  twitterOauth: passport.authenticate('twitter', { failureRedirect: '/login' }),
+
   logIn: async (req, res, next) => {
     passport.authenticate('local', { failWithError: true }),
     (req, res, next) => {

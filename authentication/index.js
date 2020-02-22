@@ -1,7 +1,10 @@
-const login = require('./auth')
+const auth = require('./auth')
 
 
 module.exports = {
-  logIn: login.logIn,
-  logOut: login.logOut
+  logIn: auth.logIn,
+  logOut: auth.logOut, 
+  twitterAuthentication: { 
+      twitterOauth: auth.twitterOauth, 
+      twitterLogin: auth.twitterLogin}
 }
