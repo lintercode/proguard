@@ -11,6 +11,12 @@ const config = {
     clientID: process.env.CLIENTID,
     clientSecret: process.env.CLIENTSECRET,
     callbackURL: `http://localhost:${process.env.PORT}/auth/facebook/callback`
+  },
+
+  TwitterConfig: {
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callback: process.env.TWITTER_CALL_BACK
   }
 }
 

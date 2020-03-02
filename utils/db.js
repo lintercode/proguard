@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { LocalConfig } = require('../config/config')
+const { LocalConfig } = require('./config')
 
 function dbConnection () {
   const DB_URL = LocalConfig.DB_URL

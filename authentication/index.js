@@ -1,7 +1,20 @@
-const authentication = require('./auth')
+const auth = require('./auth')
 
 module.exports = {
-  logIn: authentication.logIn,
-  logOut: authentication.logOut,
-  localRegistration: authentication.localRegistration
+  // Local Authentication
+  logIn: auth.logIn,
+  logOut: auth.logOut,
+  localRegistration: auth.localRegistration,
+
+  // Twitter Authentication
+  twitterAuthentication: {
+    twitterOauth: auth.twitterOauth,
+    twitterLogin: auth.twitterLogin
+  },
+
+  // Facebook Authenticaton
+  facebookAuthentication: {
+    facebookOauth: auth.facebookOauth,
+    facebookLogin: auth.facebookLogin
+  }
 }

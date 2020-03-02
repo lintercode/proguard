@@ -1,33 +1,34 @@
 const express = require('express')
-const passport = require('passport')
 const database = require('./utils/db')
-const { LocalConfig } = require('./config/config')
 const cors = require('cors')
-const { localRegistration } = require('./authentication')
+const passport = require('passport')
+const session = require('express-session')
+
+require('dotenv').config()
 require('./utils/passportConfig')
+const { LocalConfig } = require('./utils/config')
+const port = LocalConfig.PORT || 5000
+
 const app = express()
-const port = LocalConfig.PORT
-// executing the database
+
+// executing the database(passport)
 database()
 
-// Middlewares for service requestUnknown authentication strategy \"facebook\""
+// Middlewares for service request
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
+app.use(passport.initialize())
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'uwotm8'
+}))
+
 // Routes
-app.post('/create/user', localRegistration)
-app.get(
-  '/auth/facebook',
-  passport.authenticate('facebook', { scope: ['email'] })
-)
-app.get(
-  '/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-  })
-)
+require('./routes')(app)
+
 // middleware for handling file not found error
 app.use((req, res, next) => {
   const err = new Error('Request not found')
@@ -42,4 +43,4 @@ app.use((err, req, res, next) => {
   res.status(status).json({ error: { message: error.message } })
 })
 
-app.listen(port, () => console.log('server started'))
+app.listen(port, () => console.log('server started at ' + port))
