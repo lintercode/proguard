@@ -7,7 +7,9 @@ require('../utils/passportConfig')
 
 module.exports = {
   twitterLogin: passport.authenticate('twitter'),
-  twitterOauth: passport.authenticate('twitter', { failureRedirect: '/login' }),
+  twitterOauth: passport.authenticate('twitter', {
+     failureRedirect: '/login' 
+    }),
   facebookLogin: passport.authenticate('facebook', { scope: ['email'] }),
   facebookOauth: passport.authenticate('facebook', {
     successRedirect: '/',

@@ -3,6 +3,7 @@ const database = require('./utils/db')
 const cors = require('cors')
 const passport = require('passport')
 const session = require('express-session')
+const routes = require('./routes')
 
 require('dotenv').config()
 require('./utils/passportConfig')
@@ -27,7 +28,7 @@ app.use(session({
 }))
 
 // Routes
-require('./routes')(app)
+app.use(routes)
 
 // middleware for handling file not found error
 app.use((req, res, next) => {
