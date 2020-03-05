@@ -1,30 +1,34 @@
 const express = require('express')
 const database = require('./utils/db')
 const cors = require('cors')
-const passport =  require('passport')
+const passport = require('passport')
 const session = require('express-session')
-const port = process.env.PORT || 5000
-const app = express()
-require('dotenv').config()
-require('./utils/passportConfig')(passport)
+const routes = require('./routes')
 
-// executing the database
+require('dotenv').config()
+require('./utils/passportConfig')
+const { LocalConfig } = require('./utils/config')
+const port = LocalConfig.PORT || 5000
+
+const app = express()
+
+// executing the database(passport)
 database()
 
-app.use(passport.initialize());
+// Middlewares for service request
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cors())
+
+app.use(passport.initialize())
 app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: 'uwotm8'
 }))
 
-// Middlewares for service request
-app.use(express.json())
-app.use(express.urlencoded({extended: true}));
-app.use(cors())
-
 // Routes
-require('./routes')(app)
+app.use(routes)
 
 // middleware for handling file not found error
 app.use((req, res, next) => {
@@ -40,4 +44,4 @@ app.use((err, req, res, next) => {
   res.status(status).json({ error: { message: error.message } })
 })
 
-app.listen(port, () => console.log('server started at '+ port))
+app.listen(port, () => console.log('server started at ' + port))

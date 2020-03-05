@@ -1,14 +1,23 @@
 
+// const express = require('express')
+const auth = require('../authentication/index')
 const express = require('express')
-const twitterAuthentication = require('../authentication/auth')
+router = express.Router()
 
-//Twitter Login Router
-module.exports = (app)=>{
-    app.get('/login/twitter', twitterAuthentication.twitterLogin);
-    
-    app.get('/oauth/callback', twitterAuthentication.twitterOauth,
-        (req, res) => {
-            res.redirect('/')
-        }
-    );
-}
+  // Local login
+  router.post('/create/user', auth.localRegistration)
+
+  // Twitter login
+  router.get('/login/twitter', auth.twitterAuthentication.twitterLogin)
+  router.get('/oauth/callback', auth.twitterAuthentication.twitterOauth,
+    (req, res) => {
+      res.redirect('/')
+    }
+  )
+
+  // // Facebook login
+  router.get('/auth/facebook', auth.facebookAuthentication.facebookLogin)
+  router.get('/auth/facebook/callback', auth.facebookAuthentication.facebookOauth)
+
+
+module.exports = router
