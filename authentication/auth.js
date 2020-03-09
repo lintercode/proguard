@@ -16,6 +16,7 @@ module.exports = {
     failureRedirect: '/login'
   }),
 
+
   localRegistration: async (req, res, next) => {
     try {
       const { body } = req
@@ -44,3 +45,8 @@ module.exports = {
     }
   }
 }
+
+
+
+
+

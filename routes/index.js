@@ -4,8 +4,11 @@ const auth = require('../authentication/index')
 const express = require('express')
 router = express.Router()
 
-  // Local login
+  // Local registration / Login
   router.post('/create/user', auth.localRegistration)
+  router.get('/login',(req, res, next)=>{
+    res.render('login')
+  })
 
   // Twitter login
   router.get('/login/twitter', auth.twitterAuthentication.twitterLogin)
