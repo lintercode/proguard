@@ -16,5 +16,7 @@ module.exports = {
   facebookAuthentication: {
     facebookOauth: auth.facebookOauth,
     facebookLogin: auth.facebookLogin
-  }
+  },
+  
+  logInRequired: auth.loggInRequired
 }

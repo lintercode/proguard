@@ -44,20 +44,24 @@ module.exports = {
       next(error)
     }
   }
+
+  // Protects routes that requires logged access
+  loggInRequired: async (req, res, next)=>{
+    
+      // Assumming the email is in the session
+      const email = req.session.email
+      const data = await User.findOne({ email })
+      if (data) {
+          next()
+      } else { 
+          res.redirect("/login")
+      }
+    })
+
 }
 
-// Protects routes that requires logged access
-const loggInRequired = async (req, res, next)=>{
 
-  // Assumming the email is in the session
-  const email = req.session.email
-  const data = await User.findOne({ email })
-  if (data) {
-      next()
-  } else { 
-      res.redirect("/login")
-  }
-});
+
 
 
 
