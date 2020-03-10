@@ -51,7 +51,6 @@ const isLoggedIn = async (req, res, next)=>{
 
   // Assumming the email is in the session
   const email = req.session.email
-  // Another basic example with mongoose
   const data = await User.findOne({ email })
   if (data) {
       next()
