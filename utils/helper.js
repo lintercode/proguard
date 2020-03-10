@@ -67,6 +67,8 @@ const checkAccessLevel = accessKey => (verifiedToken, req, res, next) => {
   }
 }
 
+}
+
 module.exports = {
   encryptPassword,
   decryptPassword,
