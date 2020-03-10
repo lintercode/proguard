@@ -47,7 +47,7 @@ module.exports = {
 }
 
 // Protects routes that requires logged access
-const isLoggedIn = async (req, res, next)=>{
+const loggInRequired = async (req, res, next)=>{
 
   // Assumming the email is in the session
   const email = req.session.email
