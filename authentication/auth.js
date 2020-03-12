@@ -16,6 +16,7 @@ module.exports = {
     failureRedirect: '/login'
   }),
 
+
   localRegistration: async (req, res, next) => {
     try {
       const { body } = req
@@ -43,4 +44,26 @@ module.exports = {
       next(error)
     }
   }
+
+  // Protects routes that requires logged access
+  loggInRequired: async (req, res, next)=>{
+    
+      // Assumming the email is in the session
+      const email = req.session.email
+      const data = await User.findOne({ email })
+      if (data) {
+          next()
+      } else { 
+          res.redirect("/login")
+      }
+    })
+
 }
+
+
+
+
+
+
+
+
