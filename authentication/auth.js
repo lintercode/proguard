@@ -1,5 +1,3 @@
-// const express = require('express')
-// const bcrypt = require('bcryptjs')
 const { User } = require('../model')
 const { encryptPassword } = require('../utils/helper')
 const passport = require('passport')
@@ -8,8 +6,8 @@ require('../utils/passportConfig')
 module.exports = {
   twitterLogin: passport.authenticate('twitter'),
   twitterOauth: passport.authenticate('twitter', {
-     failureRedirect: '/login' 
-    }),
+    failureRedirect: '/login'
+  }),
   facebookLogin: passport.authenticate('facebook', { scope: ['email'] }),
   facebookOauth: passport.authenticate('facebook', {
     successRedirect: '/',

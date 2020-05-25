@@ -53,12 +53,14 @@ passport.use(
       callbackURL: FacebookConfig.callbackURL,
       profileFields: ['id', 'displayName', 'contact', 'name', 'email']
     },
-    function (accessToken, refreshToken, profile, done) {
-      // User.findOrCreate(..., function(err, user) {
-      //   if (err) { return done(err); }
-      //   done(null, user);
-      // });
-      // User.findOne()
+    async (accessToken, refreshToken, profile, done) => {
+      await User.findOne({ fb_Id: profile.id }, async (err, user) => {
+        if (err) { return done(err) }
+        if (!user) {
+          await User.create()
+        }
+        done(null, user)
+      })
       console.log(accessToken, profile)
     }
   )
